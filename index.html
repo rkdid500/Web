@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>통신사 결합 상품</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #eef1f5;
+    font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 32px 16px;
+  }
+
+  .list {
+    width: 100%;
+    max-width: 460px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .card {
+    background: #ffffff;
+    border-radius: 22px;
+    box-shadow: 0 2px 10px rgba(20, 24, 40, 0.06);
+    padding: 26px 28px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.15s ease;
+  }
+
+  .card.selected {
+    background: #EDFCFA;
+  }
+
+  .logo {
+    flex: 0 0 auto;
+    width: 92px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .info {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .info h2 {
+    font-size: 21px;
+    font-weight: 800;
+    color: #1a1d29;
+    letter-spacing: -0.3px;
+  }
+
+  .info p {
+    margin-top: 6px;
+    font-size: 15px;
+    color: #9aa0ac;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .chevron {
+    flex: 0 0 auto;
+    color: #b7bcc7;
+    font-size: 22px;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<div class="list">
+
+  <a class="card" href="#">
+    <span class="logo"><img src="images/LG CI.png" alt="LG유플러스"></span>
+    <span class="info">
+      <h2>LG유플러스</h2>
+      <p>U+tv와 휴대폰 결합 할인</p>
+    </span>
+    <span class="chevron">&#8250;</span>
+  </a>
+
+  <a class="card" href="#">
+    <span class="logo"><img src="images/kt-ci.png" alt="KT"></span>
+    <span class="info">
+      <h2>KT</h2>
+      <p>지니TV와 모바일 결합 선택 가능</p>
+    </span>
+    <span class="chevron">&#8250;</span>
+  </a>
+
+  <a class="card" href="#">
+    <span class="logo"><img src="images/SK CI.png" alt="SK텔레콤"></span>
+    <span class="info">
+      <h2>SK텔레콤 결합</h2>
+      <p>SK휴대폰과 인터넷 가족결합</p>
+    </span>
+    <span class="chevron">&#8250;</span>
+  </a>
+
+  <a class="card" href="#">
+    <span class="logo"><img src="images/skylife2.png" alt="KT스카이라이프"></span>
+    <span class="info">
+      <h2>KT스카이라이프</h2>
+      <p>TV·인터넷·모바일 실속 결합</p>
+    </span>
+    <span class="chevron">&#8250;</span>
+  </a>
+
+  <a class="card" href="#">
+    <span class="logo"><img src="images/skbsaving.png" alt="SK브로드밴드"></span>
+    <span class="info">
+      <h2>SK브로드밴드</h2>
+      <p>B tv와 SK휴대폰 결합</p>
+    </span>
+    <span class="chevron">&#8250;</span>
+  </a>
+
+  <a class="card" href="#">
+    <span class="logo"><img src="images/lg_hellovision.png" alt="LG헬로비전"></span>
+    <span class="info">
+      <h2>LG헬로비전</h2>
+      <p>지역별 헬로tv·인터넷 상품</p>
+    </span>
+    <span class="chevron">&#8250;</span>
+  </a>
+
+</div>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      const alreadySelected = card.classList.contains('selected');
+      cards.forEach(c => c.classList.remove('selected'));
+      if (!alreadySelected) card.classList.add('selected');
+    });
+  });
+</script>
+</body>
+</html>
