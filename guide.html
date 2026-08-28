@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>인터넷 가이드</title>
+<style>
+  :root {
+    --accent: #54C4B2;
+    --accent-light: #EDFCFA;
+    --text-main: #1a1d29;
+    --text-sub: #8a8f9c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f4f7f8;
+    font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 1160px;
+    background: #f4f7f8;
+    min-height: 100vh;
+  }
+
+  /* ---------- header ---------- */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: #ffffff;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+
+  .logo img {
+    height: 30px;
+    display: block;
+  }
+
+  .logo .logo-fallback {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+  }
+
+  .auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .btn-text {
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: #6b7280;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .btn-solid {
+    background: #22252e;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 9px 18px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* ---------- guide section ---------- */
+  .guide-section {
+    padding: 28px 0 40px;
+  }
+
+  .guide-title {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--text-main);
+    padding: 0 20px;
+    margin-bottom: 18px;
+    letter-spacing: -0.3px;
+  }
+
+  .swiper-wrap {
+    position: relative;
+  }
+
+  .swiper-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+    padding: 4px 20px 10px;
+    scrollbar-width: none;
+    cursor: grab;
+  }
+
+  .swiper-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .swiper-track.dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+  }
+
+  .guide-card img {
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+
+  .guide-card {
+    flex: 0 0 auto;
+    width: 100%;
+    scroll-snap-align: start;
+    border-radius: 22px;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  @media (min-width: 640px) {
+    .guide-card { width: calc(50% - 8px); }
+  }
+
+  @media (min-width: 960px) {
+    .guide-card { width: calc((100% - 32px) / 3); }
+  }
+
+  .guide-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ---------- nav buttons ---------- */
+  .nav-btn {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(30, 33, 43, 0.55);
+    color: #fff;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    backdrop-filter: blur(2px);
+    transition: opacity 0.2s ease;
+  }
+
+  .nav-btn.prev { left: -26px; }
+  .nav-btn.next { right: -26px; }
+
+  .nav-btn:disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @media (max-width: 480px) {
+    .nav-btn { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<header class="topbar">
+  <div class="logo">
+    <img src="images/싹딜 로고2.png" alt="싹딜" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+    <span class="logo-fallback" style="display:none;">쏙딜</span>
+  </div>
+  <div class="auth-buttons">
+    <button class="btn-text">회원가입</button>
+    <button class="btn-solid">로그인</button>
+  </div>
+</header>
+
+<section class="guide-section">
+  <h2 class="guide-title">꼭 알아두면 좋은 인터넷 가이드</h2>
+
+  <div class="swiper-wrap">
+    <button class="nav-btn prev" id="prevBtn" aria-label="이전 카드">&#8249;</button>
+
+    <div class="swiper-track" id="swiperTrack">
+      <article class="guide-card">
+        <img src="images/인터넷가이드1.png" alt="인터넷 가입 전 꼭 알아야 할 사항">
+      </article>
+
+      <article class="guide-card">
+        <img src="images/인터넷가이드2.png" alt="나에게 맞는 요금제 찾는 방법">
+      </article>
+
+      <article class="guide-card">
+        <img src="images/인터넷가이드3.png" alt="인터넷 결합할인 핵심 정리">
+      </article>
+
+      <article class="guide-card">
+        <img src="images/인터넷가이드4.png" alt="인터넷 가이드 4">
+      </article>
+    </div>
+
+    <button class="nav-btn next" id="nextBtn" aria-label="다음 카드">&#8250;</button>
+  </div>
+</section>
+
+</div>
+
+<script>
+  const track = document.getElementById('swiperTrack');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  // 화면 폭에 맞춰 카드 너비를 px 단위로 정확히 계산해서, 다음 카드가 잘려서 살짝 보이는 현상을 없앰
+  function layoutCards() {
+    const style = getComputedStyle(track);
+    const gap = parseFloat(style.gap) || 16;
+
+    let cardsPerView = 1;
+    if (window.innerWidth >= 960) cardsPerView = 3;
+    else if (window.innerWidth >= 640) cardsPerView = 2;
+
+    // scroll-snap이 카드 시작 지점(padding-left만큼)으로 튕겨서 멈추기 때문에,
+    // 정지했을 때 보이는 실제 폭 기준은 padding을 빼지 않은 clientWidth 그대로여야 함
+    const available = track.clientWidth - gap * (cardsPerView - 1);
+    const cardWidth = Math.floor(available / cardsPerView);
+
+    document.querySelectorAll('.guide-card').forEach(card => {
+      card.style.width = cardWidth + 'px';
+    });
+  }
+
+  function step() {
+    const card = track.querySelector('.guide-card');
+    const gap = parseFloat(getComputedStyle(track).gap) || 16;
+    return card.getBoundingClientRect().width + gap;
+  }
+
+  function updateNavState() {
+    const style = getComputedStyle(track);
+    const padLeft = parseFloat(style.paddingLeft) || 0;
+    const padRight = parseFloat(style.paddingRight) || 0;
+    // scroll-snap이 카드 경계에서만 멈추기 때문에, 실제로 도달 가능한 맨 끝 스크롤 위치는
+    // scrollWidth - clientWidth보다 padRight만큼 더 작음. 그만큼 빼줘야 "마지막"에서 바로 비활성화됨.
+    const maxScroll = track.scrollWidth - track.clientWidth - padRight;
+    prevBtn.disabled = track.scrollLeft <= padLeft;
+    nextBtn.disabled = track.scrollLeft >= maxScroll;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    track.scrollBy({ left: -step(), behavior: 'smooth' });
+  });
+
+  nextBtn.addEventListener('click', () => {
+    track.scrollBy({ left: step(), behavior: 'smooth' });
+  });
+
+  track.addEventListener('scroll', updateNavState);
+  window.addEventListener('resize', () => { layoutCards(); updateNavState(); });
+  layoutCards();
+  updateNavState();
+
+  // 마우스 드래그로도 가로 스크롤 가능하게 (모바일 터치 스와이프는 브라우저가 기본 지원)
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartScroll = 0;
+
+  track.addEventListener('pointerdown', (e) => {
+    if (e.pointerType === 'touch') return;
+    isDragging = true;
+    track.classList.add('dragging');
+    dragStartX = e.clientX;
+    dragStartScroll = track.scrollLeft;
+    track.setPointerCapture(e.pointerId);
+  });
+
+  track.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    track.scrollLeft = dragStartScroll - (e.clientX - dragStartX);
+  });
+
+  function endDrag() {
+    isDragging = false;
+    track.classList.remove('dragging');
+  }
+
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+
+  // 2초마다 자동으로 다음 카드로 이동 (사용자가 스크롤/버튼 조작 중이면 잠시 멈춤)
+  const AUTO_INTERVAL = 2000;
+  let autoTimer = null;
+
+  function autoAdvance() {
+    const padRight = parseFloat(getComputedStyle(track).paddingRight) || 0;
+    const maxScroll = track.scrollWidth - track.clientWidth - padRight;
+    if (track.scrollLeft >= maxScroll - 1) {
+      track.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      track.scrollBy({ left: step(), behavior: 'smooth' });
+    }
+  }
+
+  function startAuto() {
+    stopAuto();
+    autoTimer = setInterval(autoAdvance, AUTO_INTERVAL);
+  }
+
+  function stopAuto() {
+    if (autoTimer) clearInterval(autoTimer);
+    autoTimer = null;
+  }
+
+  let resumeTimeout = null;
+  function pauseAutoTemporarily() {
+    stopAuto();
+    clearTimeout(resumeTimeout);
+    resumeTimeout = setTimeout(startAuto, AUTO_INTERVAL);
+  }
+
+  track.addEventListener('pointerdown', pauseAutoTemporarily);
+  track.addEventListener('touchstart', pauseAutoTemporarily, { passive: true });
+  track.addEventListener('scroll', pauseAutoTemporarily);
+  prevBtn.addEventListener('click', pauseAutoTemporarily);
+  nextBtn.addEventListener('click', pauseAutoTemporarily);
+
+  startAuto();
+</script>
+
+</body>
+</html>
