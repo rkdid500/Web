@@ -18,16 +18,14 @@
     background: #f4f7f8;
     font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
     -webkit-tap-highlight-color: transparent;
-    display: flex;
-    justify-content: center;
     overflow-x: hidden;
   }
 
   .page {
     width: 100%;
     max-width: 1160px;
+    margin: 0 auto;
     background: #f4f7f8;
-    min-height: 100vh;
   }
 
   /* ---------- header ---------- */
@@ -134,21 +132,13 @@
     line-height: 0;
   }
 
-  @media (min-width: 640px) {
-    .guide-card { width: calc(50% - 8px); }
-  }
-
-  @media (min-width: 960px) {
-    .guide-card { width: calc((100% - 32px) / 3); }
-  }
-
   .guide-card img {
     width: 100%;
     height: auto;
     display: block;
   }
 
-  /* ---------- nav buttons ---------- */
+  /* ---------- nav buttons (shared) ---------- */
   .nav-btn {
     position: absolute;
     top: 40%;
@@ -177,9 +167,112 @@
     pointer-events: none;
   }
 
+  .nav-btn--light {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #1F2429;
+    box-shadow: 0 4px 10px rgba(20, 24, 40, 0.08);
+    backdrop-filter: none;
+  }
+
   @media (max-width: 480px) {
     .nav-btn { display: none; }
   }
+
+  /* ---------- review section ---------- */
+  .review-section {
+    background: #F4F6FA;
+    padding: 80px 0;
+    min-height: 480px;
+  }
+
+  .review-inner {
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .review-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-bottom: 24px;
+  }
+
+  .review-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.3px;
+  }
+
+  .review-seeall {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+  .review-card {
+    flex: 0 0 auto;
+    width: 100%;
+    scroll-snap-align: start;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 4px 14px rgba(20, 24, 40, 0.06);
+    padding: 32px 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+  }
+
+  .review-badge {
+    display: inline-block;
+    background: #EAF2FF;
+    color: #3B82F6;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+  }
+
+  .review-stars {
+    color: #FFC22D;
+    font-size: 17px;
+    letter-spacing: 3px;
+  }
+
+  .review-text {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: #374151;
+    font-weight: 500;
+  }
+
+  .review-user {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #F3F4F6;
+    color: #6b7280;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 6px 14px 6px 10px;
+    border-radius: 20px;
+    margin-top: 2px;
+  }
+
+  .review-user svg { width: 14px; height: 14px; flex-shrink: 0; }
 </style>
 </head>
 <body>
@@ -201,9 +294,9 @@
   <h2 class="guide-title">꼭 알아두면 좋은 인터넷 가이드</h2>
 
   <div class="swiper-wrap">
-    <button class="nav-btn prev" id="prevBtn" aria-label="이전 카드">&#8249;</button>
+    <button class="nav-btn nav-btn--light prev" id="guidePrevBtn" aria-label="이전 카드">&#8249;</button>
 
-    <div class="swiper-track" id="swiperTrack">
+    <div class="swiper-track" id="guideTrack">
       <article class="guide-card">
         <img src="images/인터넷가이드1.png" alt="인터넷 가입 전 꼭 알아야 할 사항">
       </article>
@@ -221,131 +314,198 @@
       </article>
     </div>
 
-    <button class="nav-btn next" id="nextBtn" aria-label="다음 카드">&#8250;</button>
+    <button class="nav-btn nav-btn--light next" id="guideNextBtn" aria-label="다음 카드">&#8250;</button>
   </div>
 </section>
 
 </div>
 
+<section class="review-section">
+  <div class="review-inner">
+    <div class="review-header">
+      <h2 class="review-title">후기</h2>
+      <a class="review-seeall" href="#">전체보기 &#8250;</a>
+    </div>
+
+    <div class="swiper-wrap">
+      <button class="nav-btn nav-btn--light prev" id="reviewPrevBtn" aria-label="이전 후기">&#8249;</button>
+
+      <div class="swiper-track" id="reviewTrack">
+        <article class="review-card">
+          <span class="review-badge">TV</span>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">여기저기 비교해봤는데 여기가 제일 많이 챙겨주시는 것 같아요. 왜 1등인지 알겠습니다. 감사합니다.</p>
+          <span class="review-user">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.4 0-8 2.2-8 5v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1c0-2.8-3.6-5-8-5Z"/></svg>
+            @kim*****님 후기 중
+          </span>
+        </article>
+
+        <article class="review-card">
+          <span class="review-badge">인터넷</span>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">3년 약정 끝날 때마다 여기서 바꿀 생각입니다. 설치 당일 입금 바로 확인했어요. 신뢰가 갑니다.</p>
+          <span class="review-user">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.4 0-8 2.2-8 5v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1c0-2.8-3.6-5-8-5Z"/></svg>
+            @lee*****님 후기 중
+          </span>
+        </article>
+
+        <article class="review-card">
+          <span class="review-badge">알뜰폰</span>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">요금이 반으로 줄었어요! 통화 품질도 똑같고 데이터도 넉넉해서 너무 만족하며 쓰고 있습니다.</p>
+          <span class="review-user">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.4 0-8 2.2-8 5v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1c0-2.8-3.6-5-8-5Z"/></svg>
+            @cho*****님 후기 중
+          </span>
+        </article>
+
+        <article class="review-card">
+          <span class="review-badge">인터넷</span>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">상담부터 설치까지 빠르고 친절했어요. 사은품도 바로 입금돼서 더 믿음이 갔습니다.</p>
+          <span class="review-user">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.4 0-8 2.2-8 5v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1c0-2.8-3.6-5-8-5Z"/></svg>
+            @park*****님 후기 중
+          </span>
+        </article>
+      </div>
+
+      <button class="nav-btn nav-btn--light next" id="reviewNextBtn" aria-label="다음 후기">&#8250;</button>
+    </div>
+  </div>
+</section>
+
 <script>
-  const track = document.getElementById('swiperTrack');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
+  function initSwiper(trackId, prevId, nextId, options) {
+    options = options || {};
+    const track = document.getElementById(trackId);
+    const prevBtn = document.getElementById(prevId);
+    const nextBtn = document.getElementById(nextId);
+    const cardSelector = options.cardSelector || (`#${trackId} > *`);
 
-  // 화면 폭에 맞춰 카드 너비를 px 단위로 정확히 계산해서, 다음 카드가 잘려서 살짝 보이는 현상을 없앰
-  function layoutCards() {
-    const style = getComputedStyle(track);
-    const gap = parseFloat(style.gap) || 16;
+    function layoutCards() {
+      const style = getComputedStyle(track);
+      const gap = parseFloat(style.gap) || 16;
 
-    let cardsPerView = 1;
-    if (window.innerWidth >= 960) cardsPerView = 3;
-    else if (window.innerWidth >= 640) cardsPerView = 2;
+      let cardsPerView = 1;
+      if (window.innerWidth >= 960) cardsPerView = 3;
+      else if (window.innerWidth >= 640) cardsPerView = 2;
 
-    // scroll-snap이 카드 시작 지점(padding-left만큼)으로 튕겨서 멈추기 때문에,
-    // 정지했을 때 보이는 실제 폭 기준은 padding을 빼지 않은 clientWidth 그대로여야 함
-    const available = track.clientWidth - gap * (cardsPerView - 1);
-    const cardWidth = Math.floor(available / cardsPerView);
+      // scroll-snap이 카드 시작 지점(padding-left만큼)으로 튕겨서 멈추기 때문에,
+      // 정지했을 때 보이는 실제 폭 기준은 padding을 빼지 않은 clientWidth 그대로여야 함
+      const available = track.clientWidth - gap * (cardsPerView - 1);
+      const cardWidth = Math.floor(available / cardsPerView);
 
-    document.querySelectorAll('.guide-card').forEach(card => {
-      card.style.width = cardWidth + 'px';
+      document.querySelectorAll(cardSelector).forEach(card => {
+        card.style.width = cardWidth + 'px';
+      });
+    }
+
+    function step() {
+      const card = track.querySelector(cardSelector);
+      const gap = parseFloat(getComputedStyle(track).gap) || 16;
+      return card.getBoundingClientRect().width + gap;
+    }
+
+    function updateNavState() {
+      const style = getComputedStyle(track);
+      const padLeft = parseFloat(style.paddingLeft) || 0;
+      const padRight = parseFloat(style.paddingRight) || 0;
+      const maxScroll = track.scrollWidth - track.clientWidth - padRight;
+      prevBtn.disabled = track.scrollLeft <= padLeft + 1;
+      nextBtn.disabled = track.scrollLeft >= maxScroll - 1;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -step(), behavior: 'smooth' });
     });
-  }
 
-  function step() {
-    const card = track.querySelector('.guide-card');
-    const gap = parseFloat(getComputedStyle(track).gap) || 16;
-    return card.getBoundingClientRect().width + gap;
-  }
-
-  function updateNavState() {
-    const style = getComputedStyle(track);
-    const padLeft = parseFloat(style.paddingLeft) || 0;
-    const padRight = parseFloat(style.paddingRight) || 0;
-    // scroll-snap이 카드 경계에서만 멈추기 때문에, 실제로 도달 가능한 맨 끝 스크롤 위치는
-    // scrollWidth - clientWidth보다 padRight만큼 더 작음. 그만큼 빼줘야 "마지막"에서 바로 비활성화됨.
-    const maxScroll = track.scrollWidth - track.clientWidth - padRight;
-    prevBtn.disabled = track.scrollLeft <= padLeft;
-    nextBtn.disabled = track.scrollLeft >= maxScroll;
-  }
-
-  prevBtn.addEventListener('click', () => {
-    track.scrollBy({ left: -step(), behavior: 'smooth' });
-  });
-
-  nextBtn.addEventListener('click', () => {
-    track.scrollBy({ left: step(), behavior: 'smooth' });
-  });
-
-  track.addEventListener('scroll', updateNavState);
-  window.addEventListener('resize', () => { layoutCards(); updateNavState(); });
-  layoutCards();
-  updateNavState();
-
-  // 마우스 드래그로도 가로 스크롤 가능하게 (모바일 터치 스와이프는 브라우저가 기본 지원)
-  let isDragging = false;
-  let dragStartX = 0;
-  let dragStartScroll = 0;
-
-  track.addEventListener('pointerdown', (e) => {
-    if (e.pointerType === 'touch') return;
-    isDragging = true;
-    track.classList.add('dragging');
-    dragStartX = e.clientX;
-    dragStartScroll = track.scrollLeft;
-    track.setPointerCapture(e.pointerId);
-  });
-
-  track.addEventListener('pointermove', (e) => {
-    if (!isDragging) return;
-    track.scrollLeft = dragStartScroll - (e.clientX - dragStartX);
-  });
-
-  function endDrag() {
-    isDragging = false;
-    track.classList.remove('dragging');
-  }
-
-  track.addEventListener('pointerup', endDrag);
-  track.addEventListener('pointercancel', endDrag);
-
-  // 2초마다 자동으로 다음 카드로 이동 (사용자가 스크롤/버튼 조작 중이면 잠시 멈춤)
-  const AUTO_INTERVAL = 2000;
-  let autoTimer = null;
-
-  function autoAdvance() {
-    const padRight = parseFloat(getComputedStyle(track).paddingRight) || 0;
-    const maxScroll = track.scrollWidth - track.clientWidth - padRight;
-    if (track.scrollLeft >= maxScroll - 1) {
-      track.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
+    nextBtn.addEventListener('click', () => {
       track.scrollBy({ left: step(), behavior: 'smooth' });
+    });
+
+    track.addEventListener('scroll', updateNavState);
+    window.addEventListener('resize', () => { layoutCards(); updateNavState(); });
+    layoutCards();
+    updateNavState();
+
+    // 마우스 드래그로도 가로 스크롤 가능하게 (모바일 터치 스와이프는 브라우저가 기본 지원)
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartScroll = 0;
+
+    track.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'touch') return;
+      isDragging = true;
+      track.classList.add('dragging');
+      dragStartX = e.clientX;
+      dragStartScroll = track.scrollLeft;
+      track.setPointerCapture(e.pointerId);
+    });
+
+    track.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      track.scrollLeft = dragStartScroll - (e.clientX - dragStartX);
+    });
+
+    function endDrag() {
+      isDragging = false;
+      track.classList.remove('dragging');
+    }
+
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+
+    if (options.autoInterval) {
+      let autoTimer = null;
+
+      function autoAdvance() {
+        const padRight = parseFloat(getComputedStyle(track).paddingRight) || 0;
+        const maxScroll = track.scrollWidth - track.clientWidth - padRight;
+        if (track.scrollLeft >= maxScroll - 1) {
+          track.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          track.scrollBy({ left: step(), behavior: 'smooth' });
+        }
+      }
+
+      function startAuto() {
+        stopAuto();
+        autoTimer = setInterval(autoAdvance, options.autoInterval);
+      }
+
+      function stopAuto() {
+        if (autoTimer) clearInterval(autoTimer);
+        autoTimer = null;
+      }
+
+      let resumeTimeout = null;
+      function pauseAutoTemporarily() {
+        stopAuto();
+        clearTimeout(resumeTimeout);
+        resumeTimeout = setTimeout(startAuto, options.autoInterval);
+      }
+
+      track.addEventListener('pointerdown', pauseAutoTemporarily);
+      track.addEventListener('touchstart', pauseAutoTemporarily, { passive: true });
+      track.addEventListener('scroll', pauseAutoTemporarily);
+      prevBtn.addEventListener('click', pauseAutoTemporarily);
+      nextBtn.addEventListener('click', pauseAutoTemporarily);
+
+      startAuto();
     }
   }
 
-  function startAuto() {
-    stopAuto();
-    autoTimer = setInterval(autoAdvance, AUTO_INTERVAL);
-  }
+  initSwiper('guideTrack', 'guidePrevBtn', 'guideNextBtn', {
+    cardSelector: '.guide-card',
+    autoInterval: 2000
+  });
 
-  function stopAuto() {
-    if (autoTimer) clearInterval(autoTimer);
-    autoTimer = null;
-  }
-
-  let resumeTimeout = null;
-  function pauseAutoTemporarily() {
-    stopAuto();
-    clearTimeout(resumeTimeout);
-    resumeTimeout = setTimeout(startAuto, AUTO_INTERVAL);
-  }
-
-  track.addEventListener('pointerdown', pauseAutoTemporarily);
-  track.addEventListener('touchstart', pauseAutoTemporarily, { passive: true });
-  track.addEventListener('scroll', pauseAutoTemporarily);
-  prevBtn.addEventListener('click', pauseAutoTemporarily);
-  nextBtn.addEventListener('click', pauseAutoTemporarily);
-
-  startAuto();
+  initSwiper('reviewTrack', 'reviewPrevBtn', 'reviewNextBtn', {
+    cardSelector: '.review-card'
+  });
 </script>
 
 </body>
